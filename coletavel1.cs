@@ -3,10 +3,15 @@ using UnityEngine;
 public class coletavel1 : MonoBehaviour
 {
     Player player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private contador cont;
+
+    void Awake()
+    {
+        cont = FindObjectOfType<contador>();
+    }
+
     void Start()
     {
-        //mudei pq tava dando bug para encontrar player
         player = FindObjectOfType<Player>();
 
         if (player == null)
@@ -15,25 +20,13 @@ public class coletavel1 : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
     private void OnTriggerEnter2D(Collider2D col)
-
     {
-
         if (col.CompareTag("Player"))
-
         {
-
-            player.AddTeste(1);
-
-            Destroy(gameObject);
-
+            gameObject.SetActive(false);
+            cont.textUpdate(player.AddTeste(1));
+            Destroy(gameObject, 0.05f); // permite a Unity terminar o processamento antes de remover
         }
-
     }
 }

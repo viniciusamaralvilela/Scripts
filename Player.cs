@@ -2,21 +2,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     public float Speed = 5f;
     public float jumpForce = 5f;
     public Rigidbody2D rig;
     public int coletavel = 0;
 
     public bool isGrounded = true;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         rig.freezeRotation = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Movimento
@@ -31,7 +29,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    //voltar o pulo
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -40,6 +37,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    //coletavel
-    public void AddTeste(int value) => coletavel += value;
+    public int AddTeste(int value)
+    {
+        coletavel += value;
+        return coletavel;
+    }
 }
